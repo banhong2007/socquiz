@@ -1,0 +1,672 @@
+const db = require('../models/db.js');
+const Quiz = require('../models/QuizSchema.js');
+
+db.connect();
+
+var quiz1 = {
+    idNum: 100,
+    status: "Published",
+    title: "GCIH Exam",
+    author: "socquizadmin",
+    numItems: 50,
+    dateCreated: new Date(),
+    dateUpdated: new Date(),
+    description: "Description of SOC Quiz 100.",
+    accuracies: [],
+    timesTaken: 0,
+    questions: [{
+
+index:1,
+body:"Adam works as an Incident Handler for Umbrella Inc. He has been sent to the California unit to train the members of the incident response team. As a demo project he asked members of the incident response team to perform the following actions:<br>✑ Remove the network cable wires.<br>✑ Isolate the system on a separate VLAN<br>✑ Use a firewall or access lists to prevent communication into or out of the system.<br>✑ Change DNS entries to direct traffic away from compromised system<br>Which of the following steps of the incident handling process includes the above actions?<br>",
+choiceA: "Identification",
+choiceB: "Containment",
+choiceC: "Eradication",
+choiceD: "Recovery",
+correctAnswer: "choice-B",
+explanation: "",	
+image: "",	
+audio: "" },
+{
+index:2,
+body:"Adam, a novice computer user, works primarily from home as a medical professional. He just bought a brand new Dual Core Pentium computer with over 3 GB of<br>RAM. After about two months of working on his new computer, he notices that it is not running nearly as fast as it used to. Adam uses antivirus software, anti- spyware software, and keeps the computer up-to-date with Microsoft patches. After another month of working on the computer, Adam finds that his computer is even more noticeably slow. He also notices a window or two pop-up on his screen, but they quickly disappear. He has seen these windows show up, even when he has not been on the Internet. Adam notices that his computer only has about 10 GB of free space available. Since his hard drive is a 200 GB hard drive, Adam thinks this is very odd.<br>Which of the following is the mostly likely the cause of the problem?<br>",
+choiceA: "Computer is infected with the stealth kernel level rootkit.",
+choiceB: "Computer is infected with stealth virus.",
+choiceC: "Computer is infected with the Stealth Trojan Virus.",
+choiceD: "Computer is infected with the Self-Replication Worm.",
+correctAnswer: "choice-A",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:3,
+body:"Which of the following types of attacks is only intended to make a computer resource unavailable to its users?<br>",
+choiceA: "Denial of Service attack",
+choiceB: "Replay attack",
+choiceC: "Teardrop attack",
+choiceD: "Land attack",
+correctAnswer: "choice-A",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:4,
+body:"Which of the following types of attack can guess a hashed password?<br>",
+choiceA: "Brute force attack",
+choiceB: "Evasion attack",
+choiceC: "Denial of Service attack",
+choiceD: "Teardrop attack",
+correctAnswer: "choice-A",
+explanation: "",	image: "",	audio: "" },
+{
+index:5,
+body:"In which of the following DoS attacks does an attacker send an ICMP packet larger than 65,536 bytes to the target system?<br>",
+choiceA: "Ping of death",
+choiceB: "Jolt",
+choiceC: "Fraggle",
+choiceD: "Teardrop",
+correctAnswer: "choice-A",
+explanation: "",	image: "",	audio: "" },
+{
+index:6,
+body:"Adam has installed and configured his wireless network. He has enabled numerous security features such as changing the default SSID, enabling WPA encryption, and enabling MAC filtering on his wireless router. Adam notices that when he uses his wireless connection, the speed is sometimes 16 Mbps and sometimes it is only 8 Mbps or less. Adam connects to the management utility wireless router and finds out that a machine with an unfamiliar name is connected through his wireless connection. Paul checks the router's logs and notices that the unfamiliar machine has the same MAC address as his laptop.<br>Which of the following attacks has been occurred on the wireless network of Adam?<br>",
+choiceA: "NAT spoofing",
+choiceB: "DNS cache poisoning",
+choiceC: "MAC spoofing",
+choiceD: "ARP spoofing",
+correctAnswer: "choice-C",
+explanation: "",	image: "",	audio: "" },
+{
+index:7,
+body:"Which of the following is a technique of using a modem to automatically scan a list of telephone numbers, usually dialing every number in a local area code to search for computers, Bulletin board systems, and fax machines?<br>",
+choiceA: "Demon dialing",
+choiceB: "Warkitting",
+choiceC: "War driving",
+choiceD: "Wardialing",
+correctAnswer: "choice-D",
+explanation: "",	image: "",	audio: "" },
+{
+index:8,
+body:"Network mapping provides a security testing team with a blueprint of the organization. Which of the following steps is NOT a part of manual network mapping?<br>",
+
+choiceA: "Gathering private and public IP addresses",
+choiceB: "Collecting employees information",
+choiceC: "Banner grabbing",
+choiceD: "Performing Neotracerouting",
+correctAnswer: "choice-D",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:10,
+body:"Which of the following types of attacks is the result of vulnerabilities in a program due to poor programming techniques?<br>",
+choiceA: "Evasion attack",
+choiceB: "Denial-of-Service (DoS) attack",
+choiceC: "Ping of death attack",
+choiceD: "Buffer overflow attack",
+correctAnswer: "choice-D",
+explanation: "",	image: "",	audio: "" },
+{
+index:11,
+body:"John works as a professional Ethical Hacker. He has been assigned the project of testing the security of www.we-are-secure.com. He finds that the We-are- secure server is vulnerable to attacks. As a countermeasure, he suggests that the Network Administrator should remove the IPP printing capability from the server. He is suggesting this as a countermeasure against __________.<br>",
+choiceA: "IIS buffer overflow",
+choiceB: "NetBIOS NULL session",
+choiceC: "SNMP enumeration",
+choiceD: "DNS zone transfer",
+correctAnswer: "choice-a",
+explanation: "",	image: "",	audio: "" },
+{
+index:12,
+body:"Ryan, a malicious hacker submits Cross-Site Scripting (XSS) exploit code to the Website of Internet forum for online discussion. When a user visits the infected<br>Web page, code gets automatically executed and Ryan can easily perform acts like account hijacking, history theft etc. Which of the following types of Cross-Site<br>Scripting attack Ryan intends to do?<br>",
+choiceA: "Non persistent",
+choiceB: "Document Object Model (DOM)",
+choiceC: "SAX",
+choiceD: "Persistent",
+correctAnswer: "choice-d",
+explanation: "",	image: "",	audio: "" },
+{
+index:13,
+body:"Which of the following applications is an example of a data-sending Trojan?<br>",
+choiceA: "SubSeven",
+choiceB: "Senna Spy Generator",
+choiceC: "Firekiller 2000",
+choiceD: "eBlaster",
+correctAnswer: "choice-d",
+explanation: "",	image: "",	audio: "" },
+{
+index:14,
+body:"John works as a professional Ethical Hacker. He has been assigned a project to test the security of www.we-are-secure.com. On the We-are-secure login page, he enters ='or''=' as a username and successfully logs in to the user page of the Web site.<br>The we-are-secure login page is vulnerable to a __________.<br>",
+choiceA: "Dictionary attack",
+choiceB: "SQL injection attack",
+choiceC: "Replay attack",
+choiceD: "Land attack",
+correctAnswer: "choice-b",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:16,
+body:"Adam works as a Security Analyst for Umbrella Inc. Company has a Windows-based network. All computers run on Windows XP. Manager of the Sales department complains Adam about the unusual behavior of his computer. He told Adam that some pornographic contents are suddenly appeared on his computer overnight. Adam suspects that some malicious software or Trojans have been installed on the computer. He runs some diagnostics programs and Port scanners and found that the Port 12345, 12346, and 20034 are open. Adam also noticed some tampering with the Windows registry, which causes one application to run every time when Windows start.<br>Which of the following is the most likely reason behind this issue?<br>",
+choiceA: "Cheops-ng is installed on the computer.",
+choiceB: "Elsave is installed on the computer.",
+choiceC: "NetBus is installed on the computer.",
+choiceD: "NetStumbler is installed on the computer.",
+correctAnswer: "choice-c",
+explanation: "",	image: "",	audio: "" },
+
+
+{
+index:20,
+body:"Which of the following tools is used for vulnerability scanning and calls Hydra to launch a dictionary attack?<br>",
+choiceA: "Whishker",
+choiceB: "Nessus",
+choiceC: "SARA",
+choiceD: "Nmap",
+correctAnswer: "choice-b",
+explanation: "",	image: "",	audio: "" },
+
+
+
+{
+index:23,
+body:"Which of the following statements about buffer overflow is true?<br>",
+choiceA: "It manages security credentials and public keys for message encryption.",
+choiceB: "It is a collection of files used by Microsoft for software updates released between major service pack releases.",
+choiceC: "It is a condition in which an application receives more data than it is configured to accept.",
+choiceD: "It is a false warning about a virus.",
+correctAnswer: "choice-c",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:24,
+body:"Which of the following commands is used to access Windows resources from Linux workstation?<br>",
+choiceA: "mutt",
+choiceB: "scp",
+choiceC: "rsync",
+choiceD: "smbclient",
+correctAnswer: "choice-d",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:25,
+body:"Adam, a malicious hacker, wants to perform a reliable scan against a remote target. He is not concerned about being stealth at this point.<br>Which of the following type of scans would be most accurate and reliable?<br>",
+choiceA: "UDP sacn",
+choiceB: "TCP Connect scan",
+choiceC: "ACK scan",
+choiceD: "Fin scan",
+correctAnswer: "choice-b",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:26,
+body:"You have configured a virtualized Internet browser on your Windows XP professional computer. Using the virtualized Internet browser, you can protect your operating system from which of the following?<br>",
+choiceA: "Brute force attack",
+choiceB: "Mail bombing",
+choiceC: "Distributed denial of service (DDOS) attack",
+choiceD: "Malware installation from unknown Web sites",
+correctAnswer: "choice-d",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:28,
+body:"You see the career section of a company's Web site and analyze the job profile requirements. You conclude that the company wants professionals who have a sharp knowledge of Windows server 2003 and Windows active directory installation and placement. Which of the following steps are you using to perform hacking?<br>",
+choiceA: "Scanning",
+choiceB: "Covering tracks",
+choiceC: "Reconnaissance",
+choiceD: "Gaining access",
+correctAnswer: "choice-c",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:29,
+body:"John works as a Professional Penetration Tester. He has been assigned a project to test the Website security of www.we-are-secure Inc. On the We-are-secure<br>Website login page, he enters ='or''=' as a username and successfully logs on to the user page of the Web site. Now, John asks the we-aresecure Inc. to improve the login page PHP script. Which of the following suggestions can John give to improve the security of the we-are-secure Website login page from the SQL injection attack?<br>",
+choiceA: "Use the escapeshellarg() function",
+choiceB: "Use the session_regenerate_id() function",
+choiceC: "Use the mysql_real_escape_string() function for escaping input",
+choiceD: "Use the escapeshellcmd() function",
+correctAnswer: "choice-c",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:30,
+body:"You work as a Network Administrator for Tech Perfect Inc. The company has a TCP/IP-based network. An attacker uses software that keeps trying password combinations until the correct password is found. Which type of attack is this?<br>",
+choiceA: "Denial-of-Service",
+choiceB: "Man-in-the-middle",
+choiceC: "Brute Force",
+choiceD: "Vulnerability",
+correctAnswer: "choice-c",
+explanation: "",	image: "",	audio: "" },
+
+
+
+
+{
+index:31,
+body:"You want to scan your network quickly to detect live hosts by using ICMP ECHO Requests. What type of scanning will you perform to accomplish the task?<br>",
+choiceA: "Idle scan",
+choiceB: "TCP SYN scan",
+choiceC: "XMAS scan",
+choiceD: "Ping sweep scan",
+correctAnswer: "choice-d",
+explanation: "",	image: "",	audio: "" },
+{
+index:32,
+body:"Adam, a malicious hacker is running a scan. Statistics of the scan is as follows:<br>Scan directed at open port: ClientServer<br>192.5.2.92:4079 ---------FIN---------&gt;192.5.2.110:23192.5.2.92:4079 &lt;----NO RESPONSE---<br>---192.5.2.110:23<br>Scan directed at closed port:<br><br>ClientServer -<br>192.5.2.92:4079 ---------FIN---------&gt;192.5.2.110:23<br>192.5.2.92:4079&lt;-----RST/ACK----------192.5.2.110:23<br>Which of the following types of port scan is Adam running?<br>",
+choiceA: "ACK scan",
+choiceB: "FIN scan",
+choiceC: "XMAS scan",
+choiceD: "Idle scan",
+correctAnswer: "choice-b",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:33,
+body:"Which of the following is a network worm that exploits the RPC sub-system vulnerability present in the Microsoft Windows operating system?<br>",
+choiceA: "Win32/Agent",
+choiceB: "WMA/TrojanDownloader.GetCodec",
+choiceC: "Win32/Conflicker",
+choiceD: "Win32/PSW.OnLineGames",
+correctAnswer: "choice-c",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:35,
+body:"Which of the following types of attacks is mounted with the objective of causing a negative impact on the performance of a computer or network?<br>",
+choiceA: "Vulnerability attack",
+choiceB: "Man-in-the-middle attack",
+choiceC: "Denial-of-Service (DoS) attack",
+choiceD: "Impersonation attack",
+correctAnswer: "choice-c",
+explanation: "",	image: "",	audio: "" },
+{
+index:36,
+body:"Which of the following refers to the exploitation of a valid computer session to gain unauthorized access to information or services in a computer system?<br>",
+choiceA: "Piggybacking",
+choiceB: "Hacking",
+choiceC: "Session hijacking",
+choiceD: "Keystroke logging",
+correctAnswer: "choice-c",
+explanation: "",	image: "",	audio: "" },
+{
+index:37,
+body:"Which of the following malicious software travels across computer networks without the assistance of a user?<br>",
+choiceA: "Worm",
+choiceB: "Virus",
+choiceC: "Hoax",
+choiceD: "Trojan horses",
+correctAnswer: "choice-a",
+explanation: "",	image: "",	audio: "" },
+{
+index:38,
+body:"What is the major difference between a worm and a Trojan horse?<br>",
+choiceA: "A worm spreads via e-mail, while a Trojan horse does not.",
+choiceB: "A worm is a form of malicious program, while a Trojan horse is a utility.",
+choiceC: "A worm is self replicating, while a Trojan horse is not.",
+choiceD: "A Trojan horse is a malicious program, while a worm is an anti-virus software.",
+correctAnswer: "choice-c",
+explanation: "",	image: "",	audio: "" },
+{
+index:39,
+body:"Adam works as a Security Administrator for Umbrella Inc. A project has been assigned to him to test the network security of the company. He created a webpage to discuss the progress of the tests with employees who were interested in following the test. Visitors were allowed to click on a company's icon to mark the progress of the test. Adam successfully embeds a keylogger. He also added some statistics on the webpage. The firewall protects the network well and allows strict Internet access.<br>How was security compromised and how did the firewall respond?<br>",
+choiceA: "The attack was social engineering and the firewall did not detect it.",
+choiceB: "Security was not compromised as the webpage was hosted internally.",
+choiceC: "The attack was Cross Site Scripting and the firewall blocked it.",
+choiceD: "Security was compromised as keylogger is invisible for firewall.",
+correctAnswer: "choice-a",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:41,
+body:"Which of the following methods can be used to detect session hijacking attack?<br>",
+choiceA: "nmap",
+choiceB: "Brutus",
+choiceC: "ntop",
+choiceD: "sniffer",
+correctAnswer: "choice-d",
+explanation: "",	image: "",	audio: "" },
+{
+index:42,
+body:"Adam works as a Network Administrator for PassGuide Inc. He wants to prevent the network from DOS attacks. Which of the following is most useful against DOS attacks?<br>",
+choiceA: "SPI",
+choiceB: "Distributive firewall",
+choiceC: "Honey Pot",
+choiceD: "Internet bot",
+correctAnswer: "choice-a",
+explanation: "",	image: "",	audio: "" },
+{
+index:43,
+body:"Adam works as a Security Administrator for Umbrella Inc. A project has been assigned to him to secure access to the network of the company from all possible entry points. He segmented the network into several subnets and installed firewalls all over the network. He has placed very stringent rules on all the firewalls, blocking everything in and out except the ports that must be used. He does need to have port 80 open since his company hosts a website that must be accessed from the Internet. Adam is still worried about the programs like Hping2 that can get into a network through covert channels.<br>Which of the following is the most effective way to protect the network of the company from an attacker using Hping2 to scan his internal network?<br>",
+choiceA: "Block all outgoing traffic on port 21",
+choiceB: "Block all outgoing traffic on port 53",
+choiceC: "Block ICMP type 13 messages",
+choiceD: "Block ICMP type 3 messages",
+correctAnswer: "choice-c",
+explanation: "",	image: "",	audio: "" },
+
+
+{
+index:46,
+body:"You check performance logs and note that there has been a recent dramatic increase in the amount of broadcast traffic. What is this most likely to be an indicator of?<br>",
+choiceA: "Virus",
+choiceB: "Syn flood",
+choiceC: "Misconfigured router",
+choiceD: "DoS attack",
+correctAnswer: "choice-d",
+explanation: "",	image: "",	audio: "" },
+{
+index:47,
+body:"Which of the following is a reason to implement security logging on a DNS server?<br>",
+choiceA: "For preventing malware attacks on a DNS server",
+choiceB: "For measuring a DNS server's performance",
+choiceC: "For monitoring unauthorized zone transfer",
+choiceD: "For recording the number of queries resolved",
+correctAnswer: "choice-c",
+explanation: "",	image: "",	audio: "" },
+{
+index:48,
+body:"Which of the following tools combines two programs, and also encrypts the resulting package in an attempt to foil antivirus programs?<br>",
+
+choiceA: "Trojan Man",
+choiceB: "EliteWrap",
+choiceC: "Tiny",
+choiceD: "NetBus",
+
+correctAnswer: "choice-a",
+explanation: "",	image: "",	audio: "" },
+{
+index:49,
+body:"Which of the following is spy software that records activity on Macintosh systems via snapshots, keystrokes, and Web site logging?<br>",
+choiceA: "Spector",
+choiceB: "Magic Lantern",
+choiceC: "eblaster",
+choiceD: "NetBus",
+correctAnswer: "choice-a",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:53,
+body:"You have inserted a Trojan on your friend's computer and you want to put it in the startup so that whenever the computer reboots the Trojan will start to run on the startup. Which of the following registry entries will you edit to accomplish the task?<br>",
+choiceA: "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Startup",
+choiceB: "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Auto",
+choiceC: "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\RunServices",
+choiceD: "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Start",
+correctAnswer: "choice-c",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:54,
+body:"Which of the following is the best method of accurately identifying the services running on a victim host?<br>",
+choiceA: "Use of the manual method of telnet to each of the open ports.",
+choiceB: "Use of a port scanner to scan each port to confirm the services running.",
+choiceC: "Use of hit and trial method to guess the services and ports of the victim host.",
+choiceD: "Use of a vulnerability scanner to try to probe each port to verify which service is running.",
+correctAnswer: "choice-a",
+explanation: "",	image: "",	audio: "" },
+{
+index:55,
+body:"Jason, a Malicious Hacker, is a student of Baker university. He wants to perform remote hacking on the server of DataSoft Inc. to hone his hacking skills. The company has a Windows-based network. Jason successfully enters the target system remotely by using the advantage of vulnerability. He places a Trojan to maintain future access and then disconnects the remote session. The employees of the company complain to Mark, who works as a Professional Ethical Hacker for DataSoft Inc., that some computers are very slow. Mark diagnoses the network and finds that some irrelevant log files and signs of Trojans are present on the computers. He suspects that a malicious hacker has accessed the network. Mark takes the help from Forensic Investigators and catches Jason.<br>Which of the following mistakes made by Jason helped the Forensic Investigators catch him?<br>",
+choiceA: "Jason did not perform a vulnerability assessment.",
+choiceB: "Jason did not perform OS fingerprinting.",
+choiceC: "Jason did not perform foot printing.",
+choiceD: "Jason did not perform covering tracks.",
+correctAnswer: "choice-d",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:57,
+body:"Which of the following Nmap commands is used to perform a UDP port scan?<br>",
+choiceA: "nmap -sY",
+choiceB: "nmap -sS",
+choiceC: "nmap -sN",
+choiceD: "nmap -sU",
+correctAnswer: "choice-d",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:58,
+body:"You are responsible for security at a company that uses a lot of Web applications. You are most concerned about flaws in those applications allowing some attacker to get into your network. What method would be best for finding such flaws?<br>",
+choiceA: "Manual penetration testing",
+choiceB: "Code review",
+choiceC: "Automated penetration testing",
+choiceD: "Vulnerability scanning",
+correctAnswer: "choice-d",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:60,
+body:"Which of the following characters will you use to check whether an application is vulnerable to an SQL injection attack?<br>",
+choiceA: "Dash (-)",
+choiceB: "Double quote (\")",
+choiceC: "Single quote (')",
+choiceD: "Semi colon (;)",
+correctAnswer: "choice-c",
+explanation: "",	image: "",	audio: "" },
+
+
+
+
+{
+index:61,
+body:"Which of the following tools can be used to detect the steganography?<br>",
+
+choiceA: "Dskprobe",
+choiceB: "Blindside",
+choiceC: "ImageHide",
+choiceD: "Snow",
+correctAnswer: "choice-a",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:62,
+body:"In which of the following scanning methods do Windows operating systems send only RST packets irrespective of whether the port is open or closed?<br>",
+choiceA: "TCP FIN",
+choiceB: "FTP bounce",
+choiceC: "XMAS",
+choiceD: "TCP SYN",
+correctAnswer: "choice-a",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:63,
+body:"Which of the following tools is used to download the Web pages of a Website on the local system?<br>",
+choiceA: "wget",
+choiceB: "jplag",
+choiceC: "Nessus",
+choiceD: "Ettercap",
+correctAnswer: "choice-a",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:66,
+body:"Which of the following takes control of a session between a server and a client using TELNET, FTP, or any other non-encrypted TCP/IP utility?<br>",
+choiceA: "Dictionary attack",
+choiceB: "Session Hijacking",
+choiceC: "Trojan horse",
+choiceD: "Social Engineering",
+correctAnswer: "choice-b",
+explanation: "",	image: "",	audio: "" },
+
+
+{
+index:68,
+body:"Adam works as a sales manager for Umbrella Inc. He wants to download software from the Internet. As the software comes from a site in his untrusted zone,<br>Adam wants to ensure that the downloaded software has not been Trojaned. Which of the following options would indicate the best course of action for Adam?<br>",
+choiceA: "Compare the file size of the software with the one given on the Website.",
+choiceB: "Compare the version of the software with the one published on the distribution media.",
+choiceC: "Compare the file's virus signature with the one published on the distribution.",
+choiceD: "Compare the file's MD5 signature with the one published on the distribution media.",
+correctAnswer: "choice-d",
+explanation: "",	image: "",	audio: "" },
+{
+index:69,
+body:"Maria works as a professional Ethical Hacker. She is assigned a project to test the security of www.we-are-secure.com. She wants to test a DoS attack on the<br>We-are-secure server. She finds that the firewall of the server is blocking the ICMP messages, but it is not checking the UDP packets. Therefore, she sends a large amount of UDP echo request traffic to the IP broadcast addresses. These UDP requests have a spoofed source address of the We-are-secure server. Which of the following DoS attacks is Maria using to accomplish her task?<br>",
+choiceA: "Ping flood attack",
+choiceB: "Fraggle DoS attack",
+choiceC: "Teardrop attack",
+choiceD: "Smurf DoS attack",
+correctAnswer: "choice-b",
+explanation: "",	image: "",	audio: "" },
+{
+index:70,
+body:"Which of the following Incident handling process phases is responsible for defining rules, collaborating human workforce, creating a back-up plan, and testing the plans for an enterprise?<br>",
+choiceA: "Preparation phase",
+choiceB: "Eradication phase",
+choiceC: "Identification phase",
+choiceD: "Recovery phase",
+correctAnswer: "choice-a",
+explanation: "",	image: "",	audio: "" },
+
+
+{
+index:71,
+body:"Which of the following is a computer worm that caused a denial of service on some Internet hosts and dramatically slowed down general Internet traffic?<br>",
+choiceA: "Klez",
+choiceB: "Code red",
+choiceC: "SQL Slammer",
+choiceD: "Beast",
+correctAnswer: "choice-c",
+explanation: "",	image: "",	audio: "" },
+{
+index:72,
+body:"Which of the following is designed to protect the Internet resolvers (clients) from forged DNS data created by DNS cache poisoning?<br>",
+choiceA: "Stub resolver",
+choiceB: "BINDER",
+choiceC: "Split-horizon DNS",
+choiceD: "Domain Name System Extension (DNSSEC)",
+correctAnswer: "choice-d",
+explanation: "",	image: "",	audio: "" },
+{
+index:73,
+body:"You work as a System Engineer for Cyber World Inc. Your company has a single Active Directory domain. All servers in the domain run Windows Server 2008.<br>The Microsoft Hyper-V server role has been installed on one of the servers, namely uC1. uC1 hosts twelve virtual machines. You have been given the task to configure the Shutdown option for uC1, so that each virtual machine shuts down before the main Hyper-V server shuts down. Which of the following actions will you perform to accomplish the task?<br>",
+choiceA: "Enable the Shut Down the Guest Operating System option in the Automatic Stop Action Properties on each virtual machine.",
+choiceB: "Manually shut down each of the guest operating systems before the server shuts down.",
+choiceC: "Create a batch file to shut down the guest operating system before the server shuts down.",
+choiceD: "Create a logon script to shut down the guest operating system before the server shuts down.",
+correctAnswer: "choice-a",
+explanation: "",	image: "",	audio: "" },
+{
+index:74,
+body:"You work as a Network Administrator for InformSec Inc. You find that the TCP port number 23476 is open on your server. You suspect that there may be a Trojan named Donald Dick installed on your server. Now you want to verify whether Donald Dick is installed on it or not. For this, you want to know the process running on port 23476, as well as the process id, process name, and the path of the process on your server. Which of the following applications will you most likely use to accomplish the task?<br>",
+choiceA: "Tripwire",
+choiceB: "SubSeven",
+choiceC: "Netstat",
+choiceD: "Fport",
+correctAnswer: "choice-d",
+explanation: "",	image: "",	audio: "" },
+{
+index:75,
+body:"Which of the following password cracking attacks is based on a pre-calculated hash table to retrieve plain text passwords?<br>",
+choiceA: "Rainbow attack",
+choiceB: "Brute Force attack",
+choiceC: "Dictionary attack",
+choiceD: "Hybrid attack",
+correctAnswer: "choice-a",
+explanation: "",	image: "",	audio: "" },
+{
+index:76,
+body:"Which of the following attacks is specially used for cracking a password?<br>",
+choiceA: "PING attack",
+choiceB: "Dictionary attack",
+choiceC: "Vulnerability attack",
+choiceD: "DoS attack",
+correctAnswer: "choice-b",
+explanation: "",	image: "",	audio: "" },
+{
+index:77,
+body:"You run the following bash script in Linux:<br>for i in 'cat hostlist.txt' ;do<br>nc -q 2 -v $i 80 &lt; request.txt done<br>Where hostlist.txt file contains the list of IP addresses and request.txt is the output file. Which of the following tasks do you want to perform by running this script?<br>",
+choiceA: "You want to put nmap in the listen mode to the hosts given in the IP address list.",
+choiceB: "You want to perform banner grabbing to the hosts given in the IP address list.",
+choiceC: "You want to perform port scanning to the hosts given in the IP address list.",
+choiceD: "You want to transfer file hostlist.txt to the hosts given in the IP address list.",
+correctAnswer: "choice-b",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:80,
+body:"Which of the following DoS attacks affects mostly Windows computers by sending corrupt UDP packets?<br>",
+choiceA: "Fraggle",
+choiceB: "Ping flood",
+choiceC: "Bonk",
+choiceD: "Smurf",
+correctAnswer: "choice-c",
+explanation: "",	image: "",	audio: "" },
+{
+index:81,
+body:"Who are the primary victims of smurf attacks on the contemporary Internet system?<br>",
+choiceA: "IRC servers are the primary victims to smurf attacks",
+choiceB: "FTP servers are the primary victims to smurf attacks",
+choiceC: "SMTP servers are the primary victims to smurf attacks",
+choiceD: "Mail servers are the primary victims to smurf attacks",
+correctAnswer: "choice-a",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:83,
+body:"An attacker sends a large number of packets to a target computer that causes denial of service.<br>Which of the following type of attacks is this?<br>",
+choiceA: "Spoofing",
+choiceB: "Snooping",
+choiceC: "Phishing",
+choiceD: "Flooding",
+
+correctAnswer: "choice-d",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:85,
+body:"Which of the following tools is an automated tool that is used to implement SQL injections and to retrieve data from Web server databases?<br>",
+choiceA: "Fragroute",
+choiceB: "Absinthe",
+choiceC: "Stick",
+choiceD: "ADMutate",
+correctAnswer: "choice-b",
+explanation: "",	image: "",	audio: "" },
+{
+index:86,
+body:"You run the following command while using Nikto Web scanner:<br>perl nikto.pl -h 192.168.0.1 -p 443<br>What action do you want to perform?<br>",
+choiceA: "Using it as a proxy server",
+choiceB: "Updating Nikto",
+choiceC: "Seting Nikto for network sniffing",
+choiceD: "Port scanning",
+correctAnswer: "choice-d",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:89,
+body:"Which of the following commands can be used for port scanning?<br>",
+choiceA: "nc -t",
+choiceB: "nc -z",
+choiceC: "nc -w",
+choiceD: "nc -g",
+correctAnswer: "choice-b",
+explanation: "",	image: "",	audio: "" },
+
+{
+index:93,
+body:"Adam works as an Incident Handler for Umbrella Inc. His recent actions towards the incident are not up to the standard norms of the company. He always forgets some steps and procedures while handling responses as they are very hectic to perform.<br>Which of the following steps should Adam take to overcome this problem with the least administrative effort?<br>",
+choiceA: "Create incident manual read it every time incident occurs.",
+choiceB: "Appoint someone else to check the procedures.",
+choiceC: "Create incident checklists.",
+choiceD: "Create new sub-team to keep check.",
+correctAnswer: "choice-c",
+explanation: "",	image: "",	audio: "" },
+{
+index:94,
+body:"In which of the following attacking methods does an attacker distribute incorrect IP address?<br>",
+choiceA: "IP spoofing",
+choiceB: "Mac flooding",
+choiceC: "DNS poisoning",
+choiceD: "Man-in-the-middle",
+correctAnswer: "choice-c",
+explanation: "",	image: "",	audio: "" },
+{
+index:97,
+body:"Your network is being flooded by ICMP packets. When you trace them down they come from multiple different IP addresses. What kind of attack is this?<br>",
+choiceA: "Syn flood",
+choiceB: "Ping storm",
+choiceC: "Smurf attack",
+choiceD: "DDOS",
+correctAnswer: "choice-d",
+explanation: "",	image: "",	audio: "" 
+    }]
+};
+
+db.insertMany(Quiz, [quiz1], function (flag) {
+    if (flag) {
+        console.log("\nDatabase population completed!");
+		process.exit();
+    }
+});
